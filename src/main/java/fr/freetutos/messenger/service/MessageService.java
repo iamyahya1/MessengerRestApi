@@ -12,8 +12,8 @@ public interface MessageService {
 	
 	Message createMessage(Message message);
 
-	Message updateMessage(Message message);
+	Message updateMessage(long id, Message message);
 
-	void deleteMessage(Message message);
+	void deleteMessage(long id);
 
 }

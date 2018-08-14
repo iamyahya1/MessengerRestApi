@@ -29,22 +29,26 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message updateMessage(Message message) {
+	public Message updateMessage(long id, Message message) {
 
 		for (Message m : messageData.getMessages()) {
-			if (m.getId() == message.getId()) {
+			if (m.getId() == id) {
 				m.setAuthor(message.getAuthor());
 				m.setCreated(message.getCreated());
 				m.setMessage(message.getMessage());
-				return message;
+				return m;
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public void deleteMessage(Message message) {
-		messageData.getMessages().remove(message);
+	public void deleteMessage(long id) {
+		for (Message m : messageData.getMessages()) {
+			if (m.getId() == id) {
+				messageData.getMessages().remove(m);
+			}
+		}
 
 	}
 
@@ -52,7 +56,6 @@ public class MessageServiceImpl implements MessageService {
 	public Message getMessage(long id) {
 
 		for (Message m : messageData.getMessages()) {
-			System.out.println(m);
 			if (m.getId() == id) {
 				return m;
 			}
