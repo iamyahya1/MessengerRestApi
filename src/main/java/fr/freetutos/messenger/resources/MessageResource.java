@@ -18,7 +18,7 @@ import fr.freetutos.messenger.service.MessageService;
 import fr.freetutos.messenger.service.MessageServiceImpl;
 
 @Path("/messages")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_XML})
 @Consumes({ MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
 public class MessageResource {
 
@@ -50,6 +50,11 @@ public class MessageResource {
 	@Path("/{messageId}")
 	public void deleteMessage(@PathParam("messageId") long id) {
 		messageService.deleteMessage(id);
+	}
+	
+	@Path("/{messageId}/comments")
+	public CommentResource getCommentResource() {
+		return new CommentResource();
 	}
 	
 }

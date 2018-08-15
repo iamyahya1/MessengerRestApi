@@ -1,31 +1,25 @@
 package fr.freetutos.messenger.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.json.bind.annotation.JsonbPropertyOrder;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder = { "id", "message", "created", "author" })
-@JsonbPropertyOrder({ "id", "message", "created", "author" })
-public class Message {
+@XmlType(propOrder= {"id", "message", "author", "created"})
+@JsonbPropertyOrder({"id", "message", "author", "created"})
+public class Comment {
 
 	private long id;
 	private String message;
 	private Date created;
 	private String author;
-	private List<Comment> comments =  new ArrayList<>(); 
 
 	/**
 	 * 
 	 */
-	public Message() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Comment() {
 	}
 
 	/**
@@ -34,7 +28,7 @@ public class Message {
 	 * @param created
 	 * @param author
 	 */
-	public Message(long id, String message, Date created, String author) {
+	public Comment(long id, String message, Date created, String author) {
 		this.id = id;
 		this.message = message;
 		this.created = created;
@@ -72,19 +66,10 @@ public class Message {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-
-	@XmlTransient
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
 	
 	@Override
 	public String toString() {
-		return "Message(" + id + ", " + message + ", " + created + ", " + author + ")";
+		return "Comment(" + id + ", " + message + ", " + author + ", " + created + ")";
 	}
 
 }
